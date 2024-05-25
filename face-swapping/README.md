@@ -1,7 +1,6 @@
 # ComfyUI Face Swapping Workflows
 
 # Beginner
-* <a href="two-faces.json"><img href="assets/two-faces.jpg"></a>
-
+* ["two-faces.json"](See results of two different face swaps and choose the best)
 
 # Advanced
