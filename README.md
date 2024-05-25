@@ -8,3 +8,7 @@ A collection of workflows for ComfyUI
 * [simple-with-1-face-swap.json](simple-with-1-face-swap.json)
 
 ## Advanced
+
+## Topics
+
+* [Face Swapping](face-swapping/README.md)
