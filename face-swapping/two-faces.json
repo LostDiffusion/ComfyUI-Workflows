@@ -1,0 +1,406 @@
+{
+  "last_node_id": 9,
+  "last_link_id": 7,
+  "nodes": [
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [
+        -166,
+        354
+      ],
+      "size": {
+        "0": 315,
+        "1": 314
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2,
+            7
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "00092-2535492521.png",
+        "image"
+      ]
+    },
+    {
+      "id": 1,
+      "type": "ReActorFaceSwap",
+      "pos": [
+        646.5579716992188,
+        137.77897822021484
+      ],
+      "size": {
+        "0": 315,
+        "1": 338
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input_image",
+          "type": "IMAGE",
+          "link": 2,
+          "slot_index": 0
+        },
+        {
+          "name": "source_image",
+          "type": "IMAGE",
+          "link": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "face_model",
+          "type": "FACE_MODEL",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "FACE_MODEL",
+          "type": "FACE_MODEL",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ReActorFaceSwap"
+      },
+      "widgets_values": [
+        true,
+        "inswapper_128.onnx",
+        "retinaface_resnet50",
+        "codeformer-v0.1.0.pth",
+        1,
+        0.5,
+        "no",
+        "no",
+        "0",
+        "0",
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "type": "SaveImage",
+      "pos": [
+        1015.5579716992188,
+        149.77897822021484
+      ],
+      "size": {
+        "0": 243.30615234375,
+        "1": 319.6922302246094
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 1
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "LoadImage",
+      "pos": [
+        270,
+        590
+      ],
+      "size": {
+        "0": 315,
+        "1": 314.00006103515625
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            5
+          ],
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "00117-2535492521 (1).png",
+        "image"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "ReActorFaceSwap",
+      "pos": [
+        655,
+        582
+      ],
+      "size": {
+        "0": 315,
+        "1": 338
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input_image",
+          "type": "IMAGE",
+          "link": 7,
+          "slot_index": 0
+        },
+        {
+          "name": "source_image",
+          "type": "IMAGE",
+          "link": 5,
+          "slot_index": 1
+        },
+        {
+          "name": "face_model",
+          "type": "FACE_MODEL",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            6
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "FACE_MODEL",
+          "type": "FACE_MODEL",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ReActorFaceSwap"
+      },
+      "widgets_values": [
+        true,
+        "inswapper_128.onnx",
+        "retinaface_resnet50",
+        "GPEN-BFR-512.onnx",
+        1,
+        0.5,
+        "no",
+        "no",
+        "0",
+        "0",
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "type": "SaveImage",
+      "pos": [
+        1032,
+        586
+      ],
+      "size": {
+        "0": 297.3394470214844,
+        "1": 330.60174560546875
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 6
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "LoadImage",
+      "pos": [
+        274.5579716992187,
+        145.77897822021484
+      ],
+      "size": {
+        "0": 315,
+        "1": 314
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3
+          ],
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "Jennifer.card.png",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      3,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      4,
+      0,
+      1,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      5,
+      0,
+      1,
+      1,
+      "IMAGE"
+    ],
+    [
+      5,
+      9,
+      0,
+      6,
+      1,
+      "IMAGE"
+    ],
+    [
+      6,
+      6,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      7,
+      4,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Image to Change Face Of",
+      "bounding": [
+        -193,
+        268,
+        363,
+        427
+      ],
+      "color": "#3f789e",
+      "font_size": 24
+    },
+    {
+      "title": "Face 1",
+      "bounding": [
+        261,
+        66,
+        1080,
+        433
+      ],
+      "color": "#8A8",
+      "font_size": 24
+    },
+    {
+      "title": "Face 2",
+      "bounding": [
+        260,
+        508,
+        1079,
+        422
+      ],
+      "color": "#8AA",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.751314800901578,
+      "offset": [
+        458.2264608241509,
+        82.28428858971009
+      ]
+    }
+  },
+  "version": 0.4
+}
