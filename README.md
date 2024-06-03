@@ -9,6 +9,8 @@ A collection of workflows for ComfyUI
 
 ## Advanced
 
+* [https://github.com/ZHO-ZHO-ZHO/ComfyUI-Text_Image-Composite](Text Image-Composite with Zho-Zho)
+
 ## Topics
 
 * [Face Swapping](face-swapping/README.md)
