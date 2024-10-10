@@ -1,0 +1,950 @@
+{
+  "last_node_id": 30,
+  "last_link_id": 49,
+  "nodes": [
+    {
+      "id": 5,
+      "type": "VAEDecode",
+      "pos": {
+        "0": 1135,
+        "1": -69
+      },
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 13
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 29
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 25,
+      "type": "CLIPTextEncode",
+      "pos": {
+        "0": 796,
+        "1": -182
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 44
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            38
+          ],
+          "shape": 3
+        }
+      ],
+      "title": "Negative",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 14,
+      "type": "CLIPTextEncode",
+      "pos": {
+        "0": 31,
+        "1": -388
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 43
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            40
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "title": "Positive CLIP Text Encode (Prompt)",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "a woman"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 10,
+      "type": "SamplerCustom",
+      "pos": {
+        "0": 802,
+        "1": -28
+      },
+      "size": {
+        "0": 355.20001220703125,
+        "1": 230
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 36
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 10
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 31
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 8
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 15
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 49
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            13
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": null,
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustom"
+      },
+      "widgets_values": [
+        true,
+        33,
+        "increment",
+        1
+      ]
+    },
+    {
+      "id": 23,
+      "type": "UnetLoaderGGUF",
+      "pos": {
+        "0": -356,
+        "1": -147
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            46
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UnetLoaderGGUF"
+      },
+      "widgets_values": [
+        "flux1-dev-Q4_K_S.gguf"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "DualCLIPLoader",
+      "pos": {
+        "0": -356,
+        "1": -40
+      },
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            25
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DualCLIPLoader"
+      },
+      "widgets_values": [
+        "clip_l.safetensors",
+        "t5xxl_fp8_e4m3fn.safetensors",
+        "flux"
+      ]
+    },
+    {
+      "id": 27,
+      "type": "CLIPTextEncode",
+      "pos": {
+        "0": -351,
+        "1": 128
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "title": "Positive CLIP Text Encode (Prompt)",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "A photo of jilldonut lying on a bed naked, topless. Top down view, the image illicits feelings of sensuality and arousal. Bathed in soft, diffused lighting, with sheer curtains in the background.\n\nA photo of jilldonut lying on a bed naked, topless. Her one thin hairbraid cascades over her right shoulder. Top down view, the image illicits feelings of sensuality and arousal. Bathed in soft, diffused lighting, with sheer curtains in the background. The overall aesthetic is one of understated elegance, with the soft color palette, gentle focus, and subtle highlights evoking a sense of hushed reverence. And yet, there is an undeniable air of sensuality to the scene, as if the model's nudity is not meant to provoke, but rather to invite the viewer into her private world, where vulnerability and beauty entwine in a delicate dance."
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 8,
+      "type": "PreviewImage",
+      "pos": {
+        "0": 518,
+        "1": -647
+      },
+      "size": {
+        "0": 467.03106689453125,
+        "1": 468.43695068359375
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 21,
+      "type": "ConditioningZeroOut",
+      "pos": {
+        "0": 771,
+        "1": -97
+      },
+      "size": {
+        "0": 317.4000244140625,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 38
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            31
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 19,
+      "type": "VAELoader",
+      "pos": {
+        "0": 414,
+        "1": 62
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            29,
+            48
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "ae.safetensors"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "KSamplerSelect",
+      "pos": {
+        "0": 414,
+        "1": 165
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            8
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "deis"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "FluxGuidance",
+      "pos": {
+        "0": 422,
+        "1": 271
+      },
+      "size": {
+        "0": 317.4000244140625,
+        "1": 58
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 40
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            10
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxGuidance"
+      },
+      "widgets_values": [
+        3.5
+      ]
+    },
+    {
+      "id": 12,
+      "type": "BasicScheduler",
+      "pos": {
+        "0": 72,
+        "1": 156
+      },
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 35
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            15
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "beta",
+        10,
+        0.5
+      ]
+    },
+    {
+      "id": 17,
+      "type": "LoraLoader",
+      "pos": {
+        "0": 31,
+        "1": -138
+      },
+      "size": {
+        "0": 315,
+        "1": 126
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 46
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            33
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            34
+          ],
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "Flux\\flux-disposableCamera_v10.safetensors",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 24,
+      "type": "LoraLoader",
+      "pos": {
+        "0": 412,
+        "1": -125
+      },
+      "size": {
+        "0": 315,
+        "1": 126
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 33
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 34
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            35,
+            36
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            43,
+            44
+          ],
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "Flux\\fluxdev-real-lora.safetensors",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 29,
+      "type": "VAEEncode",
+      "pos": {
+        "0": 901,
+        "1": 279
+      },
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 47
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 48
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            49
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 11,
+      "type": "EmptyLatentImage",
+      "pos": {
+        "0": 415,
+        "1": 401
+      },
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ]
+    },
+    {
+      "id": 30,
+      "type": "Note",
+      "pos": {
+        "0": 423,
+        "1": 564
+      },
+      "size": [
+        317.35978038167855,
+        62.719328852564786
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Use the Empty latent node if you want to generate an image from scratch instead of using a pre-exisitng image."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 28,
+      "type": "LoadImage",
+      "pos": {
+        "0": -344,
+        "1": -541
+      },
+      "size": {
+        "0": 315,
+        "1": 314
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            47
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "badschnell.webp",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      4,
+      5,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      8,
+      9,
+      0,
+      10,
+      3,
+      "SAMPLER"
+    ],
+    [
+      10,
+      2,
+      0,
+      10,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      13,
+      10,
+      0,
+      5,
+      0,
+      "LATENT"
+    ],
+    [
+      15,
+      12,
+      0,
+      10,
+      4,
+      "SIGMAS"
+    ],
+    [
+      25,
+      6,
+      0,
+      17,
+      1,
+      "CLIP"
+    ],
+    [
+      29,
+      19,
+      0,
+      5,
+      1,
+      "VAE"
+    ],
+    [
+      31,
+      21,
+      0,
+      10,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      33,
+      17,
+      0,
+      24,
+      0,
+      "MODEL"
+    ],
+    [
+      34,
+      17,
+      1,
+      24,
+      1,
+      "CLIP"
+    ],
+    [
+      35,
+      24,
+      0,
+      12,
+      0,
+      "MODEL"
+    ],
+    [
+      36,
+      24,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      38,
+      25,
+      0,
+      21,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      40,
+      14,
+      0,
+      2,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      43,
+      24,
+      1,
+      14,
+      0,
+      "CLIP"
+    ],
+    [
+      44,
+      24,
+      1,
+      25,
+      0,
+      "CLIP"
+    ],
+    [
+      46,
+      23,
+      0,
+      17,
+      0,
+      "MODEL"
+    ],
+    [
+      47,
+      28,
+      0,
+      29,
+      0,
+      "IMAGE"
+    ],
+    [
+      48,
+      19,
+      0,
+      29,
+      1,
+      "VAE"
+    ],
+    [
+      49,
+      29,
+      0,
+      10,
+      5,
+      "LATENT"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7972024500000012,
+      "offset": [
+        657.5852331438804,
+        691.0573034130597
+      ]
+    }
+  },
+  "version": 0.4
+}
