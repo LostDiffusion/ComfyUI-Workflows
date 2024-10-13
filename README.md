@@ -5,6 +5,7 @@ A collection of workflows for ComfyUI
 
 ## Flux
 * [ComfyUI-Default-Flux.json](flux/ComfyUI-Default-Flux.json) - Default Flux workflow from ComfyUI site, but it has some of my changes in it.
+* [Flux_with_2_Lora.json](flux/Flux_with_2_Lora.json) - Flux workflow with 2 Lora.
 * [Basic Flux GGUF with 2 Lora](flux/Flux_GGUF_with_2_Lora.json) - GGUF models work great with machines with less than 12 GB of RAM.
 * [Flux Img2Img Improver](flux/Flux_Image_Improver_img2img.json) - Load any image and it will apply a gentle pass through the Flux model you choose, giving it higher realism, especially when paired with LoRA.
 
